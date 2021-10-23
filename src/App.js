@@ -1,48 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
-import useMedia from './hooks/useMedia';
-import MobileView from './components/MobileView';
-import DesktopView from './components/DesktopView';
+import useOnScreen from './hooks/useOnScreen';
+import { useRef } from 'react';
 
 
 
 function App() {
-  const checkViewport = useMedia(
   
-    ['(max-width: 1199px)', '(min-width: 1200px)'],
-    
-  );
-
-  const renderSwitch =(param)=> {
-    switch(param) {
-      case 1:
-        return <DesktopView/>
-      default:
-        return <MobileView/>;
-    }
-  }
-
-  const changeView = {
-    0 :<MobileView/>
-  }
+const HeaderRef = useRef( null);
+const onScreenOptions ={
+  threshold: .5
+}
+const isOnScreen = useOnScreen(HeaderRef,onScreenOptions);
   
   return (
     <div className="App">
-      {renderSwitch(checkViewport)}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <header ref={HeaderRef}>
+        this is header for header fixsddsfdd fsdfds  
+      </header><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      {
+        isOnScreen ? 'asdfdsfsdf': 'bbbbbbbbbbbbbbbbb'
+      }
     </div>
   );
 }
